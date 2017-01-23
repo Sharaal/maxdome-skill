@@ -21,7 +21,7 @@ alexaApp.intent(
   {
     utterances: [
       'was es neues gibt',
-    ]
+    ],
   },
   (request, response) => {
     const query = (new AssetsQuery())
@@ -38,7 +38,7 @@ alexaApp.intent(
         console.log(error);
       });
     return false;
-  }
+  },
 );
 
 alexaApp.express(app);
