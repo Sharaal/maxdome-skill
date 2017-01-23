@@ -7,7 +7,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 
-const alexaApp = new require('alexa-app').app('maxdome');
+const alexa = require('alexa-app');
+const alexaApp = new alexa.app('maxdome');
 
 alexaApp.intent(
   'newAssets',
@@ -16,8 +17,8 @@ alexaApp.intent(
       'was es neues gibt',
     ]
   },
-  (req, res) => {
-    res.say('Success!');
+  (request, response) => {
+    response.say('Success!');
   }
 );
 
