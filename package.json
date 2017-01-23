@@ -19,7 +19,8 @@
     "body-parser": "^1.16.0",
     "dexpress": "^1.1.0",
     "dotenv": "^4.0.0",
-    "ejs": "^2.5.5"
+    "ejs": "^2.5.5",
+    "mxd-heimdall": "^2.6.0"
   },
   "devDependencies": {
     "eslint": "^3.13.1",

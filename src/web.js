@@ -10,6 +10,12 @@ app.set('view engine', 'ejs');
 const alexa = require('alexa-app');
 const alexaApp = new alexa.app('maxdome');
 
+const { AssetsQuery, Heimdall } = require('mxd-heimdall');
+const heimdall = new Heimdall({
+  apikey: process.env.HEIMDALL_APIKEY,
+  appid: process.env.HEIMDALL_APPID,
+});
+
 alexaApp.intent(
   'newAssets',
   {
@@ -18,7 +24,20 @@ alexaApp.intent(
     ]
   },
   (request, response) => {
-    response.say('Success!');
+    const query = (new AssetsQuery())
+      .filter('movies')
+      .filter('new')
+      .filter('notUnlisted')
+      .sort('activeLicenseStart', 'desc');
+    heimdall.getAssets(query)
+      .then((assets) => {
+        response.say(assets[0].title);
+        response.send();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return false;
   }
 );
 
