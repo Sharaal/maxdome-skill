@@ -1,0 +1,32 @@
+{
+  "name": "maxdome-skill",
+  "description": "",
+  "version": "1.0.0",
+  "private": true,
+  "readmeFilename": "README.md",
+  "scripts": {
+    "build": "babel src -d build",
+    "develop": "nodemon src/web.js --exec babel-node",
+    "lint": "eslint src test",
+    "postinstall": "npm run build",
+    "start": "node build/web.js"
+  },
+  "dependencies": {
+    "alexa-app": "^2.4.0",
+    "babel-cli": "^6.18.0",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-plugin-transform-strict-mode": "^6.18.0",
+    "body-parser": "^1.16.0",
+    "dexpress": "^1.1.0",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.5"
+  },
+  "devDependencies": {
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
+    "nodemon": "^1.11.0"
+  }
+}
