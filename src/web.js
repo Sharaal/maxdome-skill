@@ -8,37 +8,16 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 
 const alexa = require('alexa-app');
+// eslint-disable-next-line new-cap
 const alexaApp = new alexa.app('maxdome');
 
-const { AssetsQuery, Heimdall } = require('mxd-heimdall');
+const { Heimdall } = require('mxd-heimdall');
 const heimdall = new Heimdall({
   apikey: process.env.HEIMDALL_APIKEY,
   appid: process.env.HEIMDALL_APPID,
 });
 
-alexaApp.intent(
-  'newAssets',
-  {
-    utterances: [
-      'was es neues gibt',
-    ],
-  },
-  (request, response) => {
-    const query = (new AssetsQuery())
-      .filter('movies')
-      .filter('new')
-      .filter('notUnlisted')
-      .sort('activeLicenseStart', 'desc');
-    heimdall.getAssets(query)
-      .then((assets) => {
-        response.say(assets[0].title);
-        response.send();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    return false;
-  },
-);
+const dependencies = { alexaApp, heimdall };
+require('./intents/newAssets')(dependencies);
 
 alexaApp.express(app);
