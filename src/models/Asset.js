@@ -35,9 +35,6 @@ class Asset {
           '',
           asset.description,
         ].join('\n'),
-        image: {
-          smallImageUrl: asset.image,
-        },
       });
   }
 }
