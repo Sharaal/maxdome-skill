@@ -17,7 +17,14 @@ const heimdall = new Heimdall({
   appid: process.env.HEIMDALL_APPID,
 });
 
-const dependencies = { alexaApp, heimdall };
+const i18n = require('i18n');
+i18n.configure({
+  locales: ['de'],
+  defaultLocale: 'de',
+  directory: __dirname + '/../locales',
+});
+
+const dependencies = { alexaApp, heimdall, i18n };
 require('./intents/newAssets')(dependencies);
 
 alexaApp.express(app);

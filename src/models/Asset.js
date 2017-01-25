@@ -3,38 +3,32 @@ class Asset {
     this.data = data;
   }
 
-  render(response) {
+  render(response, { i18n }) {
     const asset = this.data;
-    let teaser;
-    switch (asset.type) {
-      case 'movie':
-        teaser = `Der Film ${asset.title}`;
-        break;
-      case 'episode':
-        teaser = `Die Folge ${asset.episodeTitle} der Serie ${asset.title}`;
-        break;
-      case 'season':
-        teaser = `Die Staffel ${asset.seasonNumber} der Serie ${asset.title}`;
-        break;
-      case 'series':
-        teaser = `Die Serie ${asset.title}`;
-        break;
-      default:
-        teaser = asset.title;
-        break;
-    }
+    const teaser = i18n.__(
+      `asset.teaser.${asset.type}`,
+      {
+        episodeTitle: asset.episodeTitle,
+        seasonNumber: asset.seasonNumber,
+        title: asset.title
+      }
+    );
     response
       .say(teaser)
       .card({
         type: 'Standard',
         title: teaser,
-        text: [
-          `${asset.productionYear}, ${asset.duration} Minuten`,
-          `Rating: ${asset.rating.averageRating} / 5 (${asset.rating.countTotal})`,
-          `Genres: ${asset.genres.join(', ')}`,
-          '',
-          asset.description,
-        ].join('\n'),
+        text: i18n.__(
+          'asset.text',
+          {
+            productionYear: asset.productionYear,
+            duration: asset.duration,
+            ratingAverageRating: asset.rating.averageRating,
+            ratingCountTotal: asset.rating.countTotal,
+            genres: asset.genres.join(', '),
+            description: assetdescription,
+          }
+        ),
       });
   }
 }
