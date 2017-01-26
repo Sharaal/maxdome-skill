@@ -21,7 +21,7 @@
     "dotenv": "^4.0.0",
     "ejs": "^2.5.5",
     "i18n": "^0.8.3",
-    "mxd-heimdall": "^3.0.1"
+    "mxd-heimdall": "^3.0.3"
   },
   "devDependencies": {
     "eslint": "^3.13.1",
