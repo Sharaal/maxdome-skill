@@ -26,7 +26,7 @@ class Asset {
             ratingAverageRating: asset.rating.averageRating,
             ratingCountTotal: asset.rating.countTotal,
             genres: asset.genres.join(', '),
-            description: assetdescription,
+            description: asset.description,
           }
         ),
       });
