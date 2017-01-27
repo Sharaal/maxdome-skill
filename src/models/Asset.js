@@ -29,6 +29,9 @@ class Asset {
             description: asset.description,
           }
         ),
+        image: {
+          smallImageUrl: asset.image ? asset.image.replace('http://', 'https://') : undefined,
+        },
       });
   }
 }
