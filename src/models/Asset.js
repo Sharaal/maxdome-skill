@@ -19,6 +19,7 @@ class Asset {
     if (asset.episodeTitle) {
       say += ` - Folge ${asset.episodeTitle}`;
     }
+    say += `, Genre: ${asset.genres.join(', ')}`;
 
     response.say(say);
 
