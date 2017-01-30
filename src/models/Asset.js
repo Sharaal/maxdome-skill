@@ -8,9 +8,9 @@ class Asset {
 
     let teaser;
     if (asset.type === 'movie') {
-      teaser = 'Film ';
+      teaser = 'Der Film ';
     } else {
-      teaser = 'Serie ';
+      teaser = 'Die Serie ';
     }
     teaser += asset.title;
     if (asset.seasonNumber) {
