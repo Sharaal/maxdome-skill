@@ -6,8 +6,8 @@ module.exports = ({ alexaApp, heimdall }) => {
   alexaApp.intent(
     'newAssetsByGenre',
     {
-      slots: { genre: 'LITERAL' },
-      utterances: ['was es neues an {genres|genre} gibt'],
+      slots: { genre: 'GENRE' },
+      utterances: ['was es neues an {GENRE} gibt'],
     },
     (request, response) => {
       const query = (new AssetsQuery())
