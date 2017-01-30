@@ -1,7 +1,0 @@
-{
-  "asset.teaser.movie": "Der Film {{title}}",
-  "asset.teaser.episode": "Die Folge {{episodeTitle}} der Serie {{title}}",
-  "asset.teaser.season": "Die Staffel {{seasonNumber}} der Serie {{title}}",
-  "asset.teaser.series": "Die Serie {{title}}",
-  "asset.text": "{{productionYear}}, {{duration}} Minuten\nRating: {{ratingAverageRating}} / 5 ({{ratingCountTotal}})\nGenres: {{genres.join(', ')}}\n\n{{description}}"
-}

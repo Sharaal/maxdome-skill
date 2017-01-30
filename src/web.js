@@ -8,7 +8,6 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 
 const alexa = require('alexa-app');
-// eslint-disable-next-line new-cap
 const alexaApp = new alexa.app('maxdome');
 
 const { Heimdall } = require('mxd-heimdall');
@@ -17,14 +16,8 @@ const heimdall = new Heimdall({
   appid: process.env.HEIMDALL_APPID,
 });
 
-const i18n = require('i18n');
-i18n.configure({
-  locales: ['de'],
-  defaultLocale: 'de',
-  directory: __dirname + '/../locales',
-});
-
-const dependencies = { alexaApp, heimdall, i18n };
+const dependencies = { alexaApp, heimdall };
 require('./intents/newAssets')(dependencies);
+require('./intents/newAssetsByGenre')(dependencies);
 
 alexaApp.express(app);

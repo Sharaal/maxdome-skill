@@ -3,35 +3,34 @@ class Asset {
     this.data = data;
   }
 
-  render(response, { i18n }) {
+  render(response) {
     const asset = this.data;
-    const teaser = i18n.__(
-      `asset.teaser.${asset.type}`,
-      {
-        episodeTitle: asset.episodeTitle,
-        seasonNumber: asset.seasonNumber,
-        title: asset.title
-      }
-    );
+
+    let teaser;
+    if (asset.type === 'movie') {
+      teaser = 'Film ';
+    } else {
+      teaser = 'Serie ';
+    }
+    teaser += asset.title;
+    if (asset.seasonNumber) {
+      teaser += ` - Staffel ${asset.seasonNumber}`;
+    }
+    if (asset.episodeTitle) {
+      teaser += ` - Folge ${asset.episodeTitle}`;
+    }
+
     response
       .say(teaser)
       .card({
         type: 'Standard',
         title: teaser,
-        text: i18n.__(
-          'asset.text',
-          {
-            productionYear: asset.productionYear,
-            duration: asset.duration,
-            ratingAverageRating: asset.rating.averageRating,
-            ratingCountTotal: asset.rating.countTotal,
-            genres: asset.genres.join(', '),
-            description: asset.description,
-          }
-        ),
-        image: {
-          smallImageUrl: asset.image ? asset.image.replace('http://', 'https://') : undefined,
-        },
+        text: [
+          `${asset.productionYear}, ${asset.duration} Minuten`,
+          `Genres: ${asset.genres.join(', ')}`,
+          '',
+          asset.description,
+        ].join('\n'),
       });
   }
 }
