@@ -6,32 +6,40 @@ class Asset {
   render(response) {
     const asset = this.data;
 
-    let teaser;
+    let say;
     if (asset.type === 'movie') {
-      teaser = 'Der Film ';
+      say = 'Der Film ';
     } else {
-      teaser = 'Die Serie ';
+      say = 'Die Serie ';
     }
-    teaser += asset.title;
+    say += asset.title;
     if (asset.seasonNumber) {
-      teaser += ` - Staffel ${asset.seasonNumber}`;
+      say += ` - Staffel ${asset.seasonNumber}`;
     }
     if (asset.episodeTitle) {
-      teaser += ` - Folge ${asset.episodeTitle}`;
+      say += ` - Folge ${asset.episodeTitle}`;
     }
 
-    response
-      .say(teaser)
-      .card({
-        type: 'Standard',
-        title: teaser,
-        text: [
-          `${asset.productionYear}, ${asset.duration} Minuten`,
-          `Genres: ${asset.genres.join(', ')}`,
-          '',
-          asset.description,
-        ].join('\n'),
-      });
+    response.say(say);
+
+    let title = asset.title;
+    if (asset.seasonNumber) {
+      title += ` - Staffel ${asset.seasonNumber}`;
+    }
+    if (asset.episodeTitle) {
+      title += ` - Folge ${asset.episodeTitle}`;
+    }
+
+    response.card({
+      type: 'Standard',
+      title: title,
+      text: [
+        `${asset.productionYear}, ${asset.duration} Minuten`,
+        `Genres: ${asset.genres.join(', ')}`,
+        '',
+        asset.description,
+      ].join('\n'),
+    });
   }
 }
 
